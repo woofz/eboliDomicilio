@@ -8,7 +8,7 @@ import './assets/styles/global.css';
 // Routes
 import Home from './routes/home.js';
 import Form from './routes/form.js';
-import FormSuccess from './routes/formSuccess';
+import FormSuccess from './routes/formSuccess.js';
 
 // Components
 import { Dialog } from './components/dialog.js';
