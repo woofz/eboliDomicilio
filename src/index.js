@@ -2,6 +2,7 @@ import { h, Component, createContext } from 'preact';
 import { Router } from 'preact-router';
 import { Link } from 'preact-router/match';
 
+// import 'tailwindcss/dist/tailwind.min.css';
 import './assets/styles/global.css';
 
 // Routes
@@ -13,6 +14,9 @@ import FormSuccess from './routes/formSuccess';
 import { Dialog } from './components/dialog.js';
 import { PWAPrompt } from './components/pwaPrompt';
 
+// Constants
+const SEARCH = process.env.PREACT_APP_DATA_SOURCE;
+
 export const Action = createContext({})
 
 export default class App extends Component {
@@ -22,6 +26,7 @@ export default class App extends Component {
 		isHomepage: true,
 		isPopupOpen: false,
 		popupNumbers: [],
+		popupContacts: []
 	}
 	
 	handleRoute = e => {
@@ -38,14 +43,23 @@ export default class App extends Component {
 		})
 	}
 
+	setPopupContacts = (e, contactsArray) => {
+		e.preventDefault();
+
+		this.setState({
+			popupContacts: contactsArray,
+			isPopupOpen: true
+		})
+	}
+
 	closePopup = (e) => {	
 		if (e.currentTarget === e.target) {
-			this.setState({ isPopupOpen: false })
+			this.setState({ isPopupOpen: false, popupNumbers: [], popupContacts: [] })
 		}
 	}
 
 	componentDidMount() {
-		fetch(`${process.env.PREACT_APP_DATA_SOURCE}?c=${Math.random().toString(36).split('.')[1]}`)
+		fetch(`${process.env.PREACT_APP_DATA_SOURCE}`)
 			.then(r => r.json())
 			.then(json => {
 				this.setState({
@@ -62,30 +76,30 @@ export default class App extends Component {
 		root.style.setProperty('--popup-visible', isPopupOpen ? 'hidden': 'initial')
 	}
 
-	render(props, { isHomepage, results, popupNumbers, isPopupOpen }) {
+	render(props, { isHomepage, results, popupNumbers, popupContacts, isPopupOpen }) {
 		return (
-			<Action.Provider value={{setPopupNumbers: this.setPopupNumbers}}>
-				<div id="app" class="px-5 max-w-screen-md mx-auto">
+			<Action.Provider value={{setPopupNumbers: this.setPopupNumbers, setPopupContacts: this.setPopupContacts}}>
+				<div id="app" class="px-5 max-w-screen-xl mx-auto">
 					<nav class="flex justify-center md:justify-end items-center">
 						{
 							isHomepage
-								? <Link class="m-5 bg-blue-500 inline-block hover:bg-blue-700 text-white font-bold px-2 py-1 rounded" href="/form">➕ Aggiungi un'attività</Link>
-								: <Link class="m-5 text-blue-500 hover:text-blue-800" href="/">Ritorna alla ricerca</Link>
+								? <Link class="m-5 bg-blue-500 inline-block hover:bg-blue-700 text-white font-bold px-2 py-1 rounded" href="/form">➕ Aggiungi la tua attività</Link>
+								: <Link class="m-5 bg-blue-500 inline-block hover:bg-red-800 text-white font-bold px-2 py-1 rounded" href="/">Ritorna alla ricerca</Link>
 						}
 					</nav>
-					<h1 class="font-sans text-4xl md:text-5xl lg:text-6xl pt-10 text-gray-800 text-center capitalize">
+					<h1 class="font-sans text-4xl md:text-5xl lg:text-6xl pt-10 text-gray-800 text-center">
 						<span class="block sm:inline-block" role="img" aria-label="biker">
-							🚴
+							🚴&nbsp;
 						</span>
 						{`${process.env.PREACT_APP_CITY} a Domicilio`}
 					</h1>
 					<Router onChange={this.handleRoute}>
 						<Home path="/" results={results} />
 						<Form path="/form" />
-						<FormSuccess path="/form/success" />
+						<FormSuccess path="/form" />
 					</Router>
 				</div>
-				<Dialog isOpen={isPopupOpen} closePopup={this.closePopup} telNumbers={popupNumbers} />
+				<Dialog isOpen={isPopupOpen} closePopup={this.closePopup} emailContacts={popupContacts} telNumbers={popupNumbers} />
 				<PWAPrompt />
 			</Action.Provider>
 		);
