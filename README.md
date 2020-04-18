@@ -34,14 +34,14 @@ npm run serve
 ## Data source
 
 All the data are fetched from this gist:
-https://gist.githubusercontent.com/tomma5o/1ca63d091b01a2fa6a73a17cc86b8fe6/raw/FerraraDomicilio.json
+https://gist.githubusercontent.com/woofz/1c2b3d96dea6eeefb1607b0c0246e00c/raw/EboliDomicilio.json
 
 When you add your gist url remember to delete the last hash because points directly to a specific commit, otherwise you would get an outdated version, so for example:
 
 ```
 remove the second hash ------------------------------------┐
                                                          
-https://gist.githubusercontent.com/tomma5o/<hash>/raw/<removeThisHash>/FerraraDomicilio.json
+https://gist.githubusercontent.com/woofz/<hash>/raw/<removeThisHash>/EboliDomicilio.json
 ```
 
 ## Netlify deploy & configuration
