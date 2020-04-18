@@ -83,6 +83,10 @@ export default class Home extends Component {
 				</div>
 				<div class="flex flex-col items-center mt-10 mb-8">
 					<p class="mb-3 text-center block">Developed with ❤️ by <a href={process.env.PREACT_APP_DEV_LINK}>{process.env.PREACT_APP_DEV_NAME}</a></p>
+					<a href="https://github.com/tomma5o/domicilioBoilerplate"
+						target="_blank"
+						rel="noopener noreferrer"
+						class="mb-5 text-xs block text-gray-500 hover:underline">Se vuoi crearlo per la tua città visita la pagina GitHub del progetto</a>
 				</div>
 			</Fragment>
 		);
