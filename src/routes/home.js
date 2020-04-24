@@ -87,6 +87,7 @@ export default class Home extends Component {
 						target="_blank"
 						rel="noopener noreferrer"
 						class="mb-5 text-xs block text-gray-500 hover:underline">Se vuoi crearlo per la tua città visita la pagina GitHub del progetto</a>
+						<a href="https://www.iubenda.com/privacy-policy/31723227" class="iubenda-black no-brand iubenda-embed" title="Privacy Policy ">Privacy Policy</a>
 				</div>
 			</Fragment>
 		);
