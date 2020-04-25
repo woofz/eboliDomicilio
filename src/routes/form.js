@@ -36,7 +36,7 @@ export default function Form() {
 
 				<div class="flex flex-wrap mx-3 mb-6 mt-6 md:mt-8">
 					<div class="w-full px-3">
-					<label class="block uppercase tracking-wide select-gray-700 text-xs font-bold mb-2">Tipologia di servizio
+					<label class="block uppercase tracking-wide text-gray-700 select-gray-700 text-xs font-bold mb-2">Tipologia di servizio
 							<select	class="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-blue-500" required name="type">
 								<option disabled="" value="">Premi per selezionare una tipologia</option>
 								<option value="salute">Salute</option>
@@ -49,6 +49,7 @@ export default function Form() {
 								<option value="ristorazione">Ristorazione</option>
 								<option value="enoteca e birre">Enoteca e Birre</option>
 								<option value="frutta fresca">Frutta Fresca</option>
+								<option value="abbigliamento">Abbigliamento</option>
 								<option value="supermercati">Supermercati</option>
 								<option value="pasticceria">Pasticceria</option>
 								<option value="pizzerie">Pizzeria</option>
